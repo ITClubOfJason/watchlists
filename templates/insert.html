@@ -1,0 +1,15 @@
+{% extends 'base1.html' %}
+{% block content %}
+{% if current_user.is_authenticated %}
+{#表单#}
+<form action="" method='POST'>
+    名称：<input type="text" name='title' autocomplete="off" required>
+    时间： <input type="text" name='pubdate' autocomplete="off" required>
+    内容: <input  name="content" id="content">
+    <input type="submit" class='btn' name='submit' value="添加">
+    
+    <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tinymce_setup.js') }}"></script>
+</form>
+{% endif %}
+{% endblock %}

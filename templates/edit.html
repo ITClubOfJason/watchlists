@@ -1,0 +1,14 @@
+{% extends 'base1.html' %}
+{% block content %}
+<h3>博文编辑页面</h3>
+<form action="" method="POST">
+    名称：<input type="text" name='title' autocomplete="off" required>
+    年份： <input type="text" name='pubdate' autocomplete="off" required>
+    内容: <input  name="content" id="content">
+    
+    <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tinymce_setup.js') }}"></script>
+    <input type="submit" class='btn' name='submit' value="更新">
+   
+</form>
+{% endblock %}

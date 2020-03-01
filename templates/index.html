@@ -1,0 +1,27 @@
+{% extends 'base1.html' %}
+{# 使用length过滤器获取movies变量的长度 #}
+{% block content %}
+<p>{{ ariticles|length }} Titles</p>
+<ul class="movie-list">
+    {% for ariticle in ariticles %}
+    <li>
+        {{ ariticle.title }}
+        <span class='float-right'>
+            <a class='imdb' id='imdb' href="{{ url_for('content', ariticle_id=ariticle.id)}}"target="_blank">点击查看</a>
+        </span>
+        {% if current_user.is_authenticated %}
+        <span class='float-right' style="margin-top: 2px;">
+            <a class='btn' href="{{ url_for('edit', ariticle_id=ariticle.id) }}" target="_blank">编辑</a>
+        </span>
+        <span class='float-right'>
+            <form class='inline-form' action="{{ url_for('delete', ariticle_id=ariticle.id) }}" method="POST">
+                <input class='btn' type="submit" name="delete" value="删除" onclick="return confirm('确定要删除吗？')">
+            </form>
+        </span>
+        {% endif%}
+    </li>
+    {% endfor%}
+
+</ul>
+
+{% endblock %}
