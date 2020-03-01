@@ -2,10 +2,10 @@ from watchlist import app,db
 from flask import request,redirect,url_for,flash,render_template
 from flask_login import login_user,logout_user,login_required,current_user
 from watchlist.models import User,Ariticle
+import re 
  
  
- 
-   # 首页
+# 首页
 
 @app.route('/',methods=['GET','POST'])
 def index(): 
@@ -24,6 +24,8 @@ def insert():
         title = request.form['title']
         pubdate = request.form['pubdate']
         content = request.form['content']
+        re_h=re.compile('</?\w+[^>]*>')
+        content=re_h.sub('',content)
         print(content)
 
         # 验证title，pubdate,content不为空，并且pubdate的长度不大于4
@@ -49,6 +51,8 @@ def edit(ariticle_id):
         title = request.form['title']
         pubdate = request.form['pubdate']
         content = request.form['content']
+        re_h=re.compile('</?\w+[^>]*>')
+        content=re_h.sub('',content)
         print(content)
 
         if not title or not pubdate or not content or len(pubdate)>30:
